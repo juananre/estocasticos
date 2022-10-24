@@ -38,6 +38,7 @@ public class Master : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         texto_rojas.text = "" + contador_rojas;
         texto_verde.text = "" + contador_verdes;
         texto_azul.text = "" + contador_azules;
@@ -68,7 +69,12 @@ public class Master : MonoBehaviour
     {
         if (contador_intentos > 0)
         {
-            num_resutado = Random.Range(0, rango_probabilidad);
+            for (int i = 0; i < 100; i++)
+            {
+                num_resutado = Random.Range(0, rango_probabilidad);
+                print(num_resutado);
+            }
+            //num_resutado = Random.Range(0, rango_probabilidad);
             verificar = true;
             contador_intentos--;
         }
