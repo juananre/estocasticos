@@ -18,7 +18,7 @@ public class Master : MonoBehaviour
     [SerializeField] int contador_verdes;
     [SerializeField] int contador_azules;
 
-    [SerializeField] int rango_probabilidad = 3;
+    [SerializeField] int rango_probabilidad = 4;
 
     [SerializeField] TextMeshProUGUI texto_rojas;
     [SerializeField] TextMeshProUGUI texto_azul;
@@ -94,6 +94,12 @@ public class Master : MonoBehaviour
                 resultado.material.color = Color.red;
                 contador_malas++;
                 contador_rojas++;
+                break;
+
+            case 3:
+                resultado.material.color = Color.green;
+                contador_buenas++;
+                contador_verdes++;
                 break;
         }
     }
