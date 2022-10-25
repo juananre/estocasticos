@@ -69,12 +69,12 @@ public class Master : MonoBehaviour
     {
         if (contador_intentos > 0)
         {
-            for (int i = 0; i < 100; i++)
+            /*for (int i = 0; i < 100; i++)
             {
                 num_resutado = Random.Range(0, rango_probabilidad);
                 print(num_resutado);
-            }
-            //num_resutado = Random.Range(0, rango_probabilidad);
+            }*/
+            num_resutado = Random.Range(0, rango_probabilidad);
             verificar = true;
             contador_intentos--;
         }
