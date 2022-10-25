@@ -25,7 +25,13 @@ public class Master : MonoBehaviour
     [SerializeField] TextMeshProUGUI texto_verde;
     [SerializeField] TextMeshProUGUI texto_intentos;
 
+    [SerializeField] GameObject ganaste;
+    [SerializeField] GameObject perdiste;
 
+
+
+
+    bool terminar = false;
     bool verificar = false;
 
     // Start is called before the first frame update
@@ -53,11 +59,13 @@ public class Master : MonoBehaviour
 
         if (contador_intentos <= 0)
         {
-
+            perdiste.SetActive(true);
+            terminar = true;
         }
         if (contador_buenas == 3)
         {
-
+            ganaste.SetActive(true);
+            terminar = true;
         }
         if (contador_malas == 3)
         {
@@ -67,7 +75,7 @@ public class Master : MonoBehaviour
 
     public void sacar_balota()
     {
-        if (contador_intentos > 0)
+        if (contador_intentos > 0 && terminar==false)
         {
             /*for (int i = 0; i < 100; i++)
             {
