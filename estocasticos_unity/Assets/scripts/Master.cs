@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Master : MonoBehaviour
 {
@@ -57,7 +58,7 @@ public class Master : MonoBehaviour
             verificar = false;
         }
 
-        if (contador_intentos <= 0)
+        if (contador_intentos <= 0 && contador_buenas < 3)
         {
             perdiste.SetActive(true);
             terminar = true;
@@ -71,6 +72,14 @@ public class Master : MonoBehaviour
         {
 
         }
+
+        
+        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+                SceneManager.LoadScene(0);
+        }
+        
     }
 
     public void sacar_balota()
