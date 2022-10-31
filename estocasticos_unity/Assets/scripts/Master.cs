@@ -61,10 +61,7 @@ public class Master : MonoBehaviour
 
     bool terminar = false;
     bool verificar = false;
-    bool turno = false;
-
-    bool verde1 = true;
-    bool verde2 = true;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -88,6 +85,10 @@ public class Master : MonoBehaviour
         texto_rojas3.text = "" + contador_rojas3;
         texto_verde3.text = "" + contador_verdes3;
         texto_azul3.text = "" + contador_azules3;
+
+        texto_rojas4.text = "" + contador_rojas4;
+        texto_verde4.text = "" + contador_verdes4;
+        texto_azul4.text = "" + contador_azules4;
 
         texto_intentos.text = "" + contador_intentos;
 
@@ -134,8 +135,7 @@ public class Master : MonoBehaviour
             num_resutado = Random.Range(0, rango_probabilidad);
             verificar = true;
             contador_intentos--;
-            turno = true;
-
+            
         }
        
     }
@@ -146,25 +146,22 @@ public class Master : MonoBehaviour
             case 0:
                 resultado.material.color = Color.green;
                 contador_buenas++;
-                if (verde1 == true && turno == true)
+                if (contador_intentos==3)
                 {
                     contador_verdes1++;
-                    verde1 = false;
-                    
                 }
 
-                if (verde1 == true && turno == true)
+                if (contador_intentos==2)
                 {
                     contador_verdes2++;
-                    verde2 = false;
-                    
+  
                 }
-                if (contador_verdes2 == 1 && verde2 == true)
+                if (contador_intentos==1)
                 {
                     contador_verdes3++;
                     
                 }
-                if (contador_verdes3 >= 1)
+                if (contador_intentos==0)
                 {
                     contador_verdes4++;
                 }
@@ -173,19 +170,75 @@ public class Master : MonoBehaviour
             case 1:
                 resultado.material.color = Color.blue;
                 contador_malas++;
-                contador_azules1++;
+                if (contador_intentos == 3)
+                {
+                    contador_azules1++;
+                }
+
+                if (contador_intentos == 2)
+                {
+                    contador_azules2++;
+
+                }
+                if (contador_intentos == 1)
+                {
+                    contador_azules3++;
+
+                }
+                if (contador_intentos == 0)
+                {
+                    contador_azules4++;
+                }
                 break;
 
             case 2:
                 resultado.material.color = Color.red;
                 contador_malas++;
-                contador_rojas1++;
+                if (contador_intentos == 3)
+                {
+                    contador_rojas1++;
+                   
+                }
+
+                if (contador_intentos == 2)
+                {
+                    contador_rojas2++;
+
+                }
+                if (contador_intentos == 1)
+                {
+                    contador_rojas3++;
+
+                }
+                if (contador_intentos == 0)
+                {
+                    contador_rojas4++;
+                }
+                
                 break;
 
             case 3:
                 resultado.material.color = Color.green;
                 contador_buenas++;
-                contador_verdes1++;
+                if (contador_intentos == 3)
+                {
+                    contador_verdes1++;        
+                }
+
+                if (contador_intentos == 2)
+                {
+                    contador_verdes2++;
+
+                }
+                if (contador_intentos == 1)
+                {
+                    contador_verdes3++;
+
+                }
+                if (contador_intentos == 0)
+                {
+                    contador_verdes4++;
+                }
                 break;
         }
     }

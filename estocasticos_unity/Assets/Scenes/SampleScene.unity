@@ -3741,7 +3741,7 @@ MonoBehaviour:
   contador_rojas4: 0
   contador_verdes4: 0
   contador_azules4: 0
-  rango_probabilidad: 1
+  rango_probabilidad: 4
   texto_rojas1: {fileID: 876035964}
   texto_azul1: {fileID: 1094306751}
   texto_verde1: {fileID: 514318285}
