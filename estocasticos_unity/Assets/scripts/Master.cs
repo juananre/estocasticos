@@ -9,7 +9,8 @@ public class Master : MonoBehaviour
 {
     [SerializeField] GameObject balota;
     [SerializeField] Renderer resultado;
-    [SerializeField] int num_resutado = 0;
+    //[SerializeField] int num_resutado = 0;
+    [SerializeField] float num_resutado;
 
     [SerializeField] int contador_intentos = 5;
     [SerializeField] int contador_buenas;
@@ -31,9 +32,14 @@ public class Master : MonoBehaviour
     [SerializeField] int contador_verdes4;
     [SerializeField] int contador_azules4;
 
-    [Header("probabilidad")]
-    [SerializeField] int rango_probabilidad = 3;
+    //[Header("probabilidad")]
+    //[SerializeField] int rango_probabilidad = 3;
+    [Header("probabilidad 2")]
+    [SerializeField] float verde;
+    [SerializeField] float roja;
+    [SerializeField] float azul;
 
+    
     [Header("intento 1")]
     [SerializeField] TextMeshProUGUI texto_rojas1;
     [SerializeField] TextMeshProUGUI texto_azul1;
@@ -52,7 +58,7 @@ public class Master : MonoBehaviour
     [SerializeField] TextMeshProUGUI texto_verde4;
     [Header("tex")]
     [SerializeField] TextMeshProUGUI texto_intentos;
-
+  
     [SerializeField] GameObject ganaste;
     [SerializeField] GameObject perdiste;
 
@@ -90,9 +96,14 @@ public class Master : MonoBehaviour
         texto_verde4.text = "" + contador_verdes4;
         texto_azul4.text = "" + contador_azules4;
 
+     
         texto_intentos.text = "" + contador_intentos;
 
 
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            sacar_balota();
+        }
         if (verificar == true)
         {
             sacar();
@@ -132,16 +143,103 @@ public class Master : MonoBehaviour
                 num_resutado = Random.Range(0, rango_probabilidad);
                 print(num_resutado);
             }*/
-            num_resutado = Random.Range(0, rango_probabilidad);
+
+            
+            //num_resutado = Random.Range(0, rango_probabilidad);
+            num_resutado= Random.Range(0f, 100f);
             verificar = true;
             contador_intentos--;
+
+
             
         }
        
     }
+  
     public void sacar()
     {
-        switch (num_resutado)
+        float rangeForFirstChance = verde;
+        float rangeForSecondChance = rangeForFirstChance + roja;
+        float rangeForThirdChance = rangeForSecondChance + azul;
+
+        if (num_resutado <= rangeForFirstChance)
+        {
+            resultado.material.color = Color.green;
+            contador_buenas++;
+            if (contador_intentos == 3)
+            {
+                contador_verdes1++;
+            }
+
+            if (contador_intentos == 2)
+            {
+                contador_verdes2++;
+
+            }
+            if (contador_intentos == 1)
+            {
+                contador_verdes3++;
+
+            }
+            if (contador_intentos == 0)
+            {
+                contador_verdes4++;
+            }
+            
+        }
+        else if (num_resutado <= rangeForSecondChance)
+        {
+            resultado.material.color = Color.red;
+            contador_malas++;
+            if (contador_intentos == 3)
+            {
+                contador_rojas1++;
+
+            }
+
+            if (contador_intentos == 2)
+            {
+                contador_rojas2++;
+
+            }
+            if (contador_intentos == 1)
+            {
+                contador_rojas3++;
+
+            }
+            if (contador_intentos == 0)
+            {
+                contador_rojas4++;
+            }
+        }
+        else if (num_resutado <= rangeForThirdChance)
+        {
+            resultado.material.color = Color.blue;
+            contador_malas++;
+            if (contador_intentos == 3)
+            {
+                contador_azules1++;
+            }
+
+            if (contador_intentos == 2)
+            {
+                contador_azules2++;
+
+            }
+            if (contador_intentos == 1)
+            {
+                contador_azules3++;
+
+            }
+            if (contador_intentos == 0)
+            {
+                contador_azules4++;
+            }
+            
+        }
+      
+
+        /*switch (num_resutado)
         {
             case 0:
                 resultado.material.color = Color.green;
@@ -240,6 +338,23 @@ public class Master : MonoBehaviour
                     contador_verdes4++;
                 }
                 break;
-        }
+        }*/
+    }
+    public void ReadString_red(string prob_roja)
+    {
+        float resl;
+        float.TryParse(prob_roja, out resl);
+        roja = resl;
+
+        //roja = float.Parse(prob_roja);
+        Debug.Log(prob_roja);
+    }
+    public void ReadString_green(float prob_verde)
+    {
+        verde = prob_verde;
+    }
+    public void ReadString_blue(float prob_azul)
+    {
+        azul = prob_azul;
     }
 }
